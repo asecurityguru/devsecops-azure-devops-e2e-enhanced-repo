@@ -1,0 +1,9 @@
+parameters:
+  sonar_token: ''
+
+jobs:
+- job: Sonar_SAST_Scan_Job
+  steps:
+  - script: |
+      mvn verify package sonar:sonar -Dsonar.host.url="https://sonarcloud.io/" -Dsonar.organization=azuredevopsdevsecopsoorg -Dsonar.projectKey=azuredevsecopsoprojectkey -Dsonar.login=$(sonar_token)
+    displayName: "Integrate SAST using SonarCloud to populate code coverage and secure pipeline variable in Azure DevOps DevSecOps Pipeline"

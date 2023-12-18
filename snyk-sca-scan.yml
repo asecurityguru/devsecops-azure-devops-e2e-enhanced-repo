@@ -1,0 +1,12 @@
+# snyk-sca-scan.yml
+
+parameters:
+  snyk_Token: ''
+
+jobs:
+- job: Snyk_SCA_Scan_Job
+  steps:
+  - script: |
+      export SNYK_TOKEN=$(snyk_Token)
+      mvn snyk:test -fn
+    displayName: "Integrate SCA scan using Snyk in ADO DevSecOps Pipeline"

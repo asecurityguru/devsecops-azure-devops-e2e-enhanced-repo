@@ -1,0 +1,30 @@
+
+trigger:
+  - master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- group: "SECURE_TOKENS"
+- name: snyk_token
+  value: $[variables.SNYKTOKEN]
+- name: sonar_token
+  value: $[variables.SONARTOKEN]
+
+stages:
+- stage: SonarCloud_SAST_Scan
+  jobs:
+  - template: sonar-sast-scan.yml
+    parameters:
+      sonar_token: $(sonar_token)
+
+- stage: SNYK_SCA_Scan
+  jobs:
+  - template: snyk-sca-scan.yml
+    parameters:
+      snyk_token: $(snyk_token)
+
+- stage: ZAP_DAST_Scan
+  jobs:
+    - template: zap-dast-scan.yml
