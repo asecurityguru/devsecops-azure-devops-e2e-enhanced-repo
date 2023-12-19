@@ -1,5 +1,3 @@
-# zap-scan.yml
-
 jobs:
 - job: ZAP_DAST_Scan_Job
   steps:

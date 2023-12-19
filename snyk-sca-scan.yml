@@ -1,5 +1,3 @@
-# snyk-sca-scan.yml
-
 parameters:
   snyk_Token: ''
 
